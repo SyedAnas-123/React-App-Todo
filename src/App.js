@@ -4,6 +4,14 @@ import Navbar from "./components/Navbar";
 import Textform from "./components/Textform";
 import React, { useState } from "react";
 import Alertss from "./components/Alertss";
+import "./App.css";
+//for routing
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+ 
+} from "react-router-dom";
 
 
 function App() {
@@ -36,12 +44,12 @@ function App() {
       setmode("dark");
       document.body.style.backgroundColor = "#091e3d";
       showalert("Dark mode has been enabled ","Success");
-      document.title= "Textutils - Darkmode";
+     
     } else {
       setmode("light");
       document.body.style.backgroundColor = "white";
       showalert("Light mode has been enabled ","Success");
-      document.title= "Textutils - lightmode";
+     
        // for chamaknee wlaa ttile
 
       //  setInterval(() => {
@@ -58,6 +66,7 @@ function App() {
 
   return (
     <>
+    <Router>
       {/* mode is a props and used as a state and toggle mode is a function  and used as a props and using togglr mode we amke an event and using that event we set our mode and call this event function in switch */}
       <Navbar
         title="Text Utils Blog"
@@ -70,11 +79,23 @@ function App() {
 
         <div className="container my-3">
           {/* text form ko bta diya ke bahe mera mode ye he like light */}
+          <Switch>
+          <Route path="/about">
+            <About mode={mode} />
+          </Route>
+          
+          <Route path="/">
+          <Textform mode={mode} showalert={showalert} heading="Try TextUtils - Word Counter , Charachter Counter ,Remove extra spaces" />
+          </Route>
+          
+        </Switch>
+        </div>
+        </Router>
 
-        <Textform mode={mode} showalert={showalert} heading="Enter The Text To Analyze Below" />
+       
 {/* we want about pr jbh click ho to about ajaee to filhal text form ko hata diya  */}
-        <About />
-      </div>
+        
+     
     </>
   );
 }

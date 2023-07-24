@@ -42,3 +42,6 @@
  .form-switch {
   padding-left: 4em;
  }
+ .accordion-button::after {
+  filter: invert(1);
+ }

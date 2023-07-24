@@ -1,48 +1,32 @@
-import React, { useState } from "react";
+import React  from "react";
 
-export default function About() {
-  const [myStyle, setmyStyle] = useState({
-    //making an java script object first and now we change it and using it like a state
-    color: 'black ',
-    backgroundColor: 'white',
-  });
+export default function About(props) {
+  // const [myStyle, setmyStyle] = useState({
+  //   //making an java script object first and now we change it and using it like a state
+  //   color: 'black ',
+  //   backgroundColor: 'white',
+  // });
 
-//   we also want to use btn text as a state and just showing we gonna use multiple states
-const [btnText, setbtnText] = useState("Enable Dark Mode");
-// so now we are alos gonna change text content so if we call it in togglestyle and set text to which we wanna use like enable dark mode or not as per the if conditions
-
-
-//***********************************************************************************8************ */
-// first we use logic foor  enablinng the dark mode and in the btn text we write disable dark mode 
-// in this i am saying if mystyle color is black then produce it white and change bg color yo balck 
-  const togglesStyles= () =>{
-    if(myStyle.color === 'black'){
-        setmyStyle({
-            color: 'white',
-            backgroundColor : 'black',
-            border: ' 1px solid white'
-
-        })
-        setbtnText("Disable DarkMode")
-    }
-    else{
-        setmyStyle({
-            color:'black',
-            backgroundColor: ' white',
-        })
-        setbtnText("Enable Dark Mode")
-    }
+  //1: not taking state og =f my style  we can also use as a variable and send and send objects and using logic of dark mode on about section .
+//2 : also send mode to about componet take usko pta to ho mode black he ya white ?
 
 
+  let myStyle ={    
+    color : props.mode === 'dark' ? 'white' : '#042743',    //we write logic for dark mode on about section 
+    backgroundColor :props.mode==='dark'? 'rgb(36 74 104)' : 'white',
+     border: '2px solid',                                       //taking boder conditionally bcz agr mode light ho to border black wrna white condition de rhe hen
+     borderColor: props.mode === 'dark' ? 'white' : '#042743'
 
-        
   }
-  
+
+
+
 
   return (
     // calling of that object
-    <div className="container" style={myStyle}>
-      <h1 className="my-5">About Us</h1>
+    // bcz dont want the color of the upee dark mode logic to this just jbh bblack hoga to normal background jesa color iska hojaeega herading ka
+    <div className="container" style={ {color : props.mode === 'dark' ? 'white' : '#042743'}}> 
+      <h1 className="my-5 active ">About Us</h1>
       {/* using style */}
       <div className="accordion" id="accordionExample" style={myStyle}>
         <div className="accordion-item">
@@ -149,14 +133,13 @@ const [btnText, setbtnText] = useState("Enable Dark Mode");
         </div>
       </div>
 
-      {/* using dark mode logic */}
-      <div className="container my-4">
-
-        {/* making an event on click and makes its arrwo function and define logic in it  */}
-        <button onClick={togglesStyles} type="button" className="btn btn-primary">{btnText}
-        </button>   
-        {/* JUST CALL HE DEFAULT VALUE OF BTN TETX IN THIS BUTTON  */}
-      </div>
+     
+     
     </div>
   );
 }
+
+
+// 1.dark mode ka jo about me buttto n he js se dark mode enable hoga wo sb hata den gen...  ager dikhna ho dusree flder em ja kr dikhlen
+// 2: ToGGLE STYLE FUNCTION BH HATA DIYA KU KE WO SIRF DARK MODE KE LIYE THA KHALI.
+

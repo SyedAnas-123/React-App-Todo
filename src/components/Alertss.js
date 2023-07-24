@@ -4,10 +4,17 @@ import React from 'react'
 function Alertss(props) {
   return (
   
+    <div style={{height:'50px'}}>
+    {
    props.Alert && <div className="alert alert-success alert-dismissible fade show" role="alert">
  <strong > {props.Alert.typeofalert} </strong> :  {props.Alert.msg}
  
+</div>}
+
 </div>
+
+    
+ 
       
   
   )
@@ -64,3 +71,10 @@ export default Alertss
 // after 1 sec it is null setTimeout(() => {
 //   setalert(null)
 // }, 1500);
+
+
+
+
+
+// ****************************************************************************************
+// 1: we wqnt that ke layout change na hO pae to put a div contaimer
